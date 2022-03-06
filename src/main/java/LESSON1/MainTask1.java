@@ -9,12 +9,17 @@ public class MainTask1 {
     public static void main(String[] args) {
         //Первый Модуль
         /*1*/
+/*
         String name1 = "Max", name2 = "Kirill", name3 = "Timur";
-        /*2*/
+        */
+/*2*//*
+
         for (int i = 0; i < 10; i++)
             System.out.println("Когда я вырасту, то хочу быть паровым экскаватором!");
 
-        /*3*/
+        */
+/*3*//*
+
         // String s = "Merry";
         // System.out.println("Christmas");
         // System.out.println("Merry New");
@@ -26,7 +31,9 @@ public class MainTask1 {
         System.out.print(" ");
         System.out.println("Year");
 
-        /*4*/
+        */
+/*4*//*
+
         String s = "5";
 
         String t = "6";
@@ -34,7 +41,9 @@ public class MainTask1 {
         int x = 7;
 
 
-        /*5*/
+        */
+/*5*//*
+
         System.out.println("Меня зовут Амиго.\n" +
                 "\n" +
                 "Я согласен на зарплату $800/месяц в первый год.\n" +
@@ -45,7 +54,9 @@ public class MainTask1 {
                 "\n" +
                 "Поцелуй мой блестящий металлический зад!");
 
-        /*6*/
+        */
+/*6*//*
+
         String s = "Nothing";
         s = s + " ";
         s = s + "personal";
@@ -59,7 +70,9 @@ public class MainTask1 {
         s = s + ".";
         System.out.println(s);
 
-        /*7*/
+        */
+/*7*//*
+
         //String s = "15";
         int a = 5;
         //int z = 18;
@@ -68,7 +81,9 @@ public class MainTask1 {
         String b = " better then ";
         System.out.println(a + b + c);
 
-        /*8*/
+        */
+/*8*//*
+
         for (int i = 0; i < 16; i++)
             System.out.println("Слава Роботам! Убить всех человеков!");
 
@@ -249,6 +264,7 @@ public class MainTask1 {
         String name2 = scanner.nextLine();
         String name3 = scanner.nextLine();
         System.out.println( name1 +" "+ name2 +" "+ name3 +" = Чистая любовь, да-да!");
+*/
 
     }
 }
