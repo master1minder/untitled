@@ -13,7 +13,7 @@ public class TicTacToe
     private   char player;
 
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
 
         String ch;
         TicTacToe Toe=new TicTacToe();
@@ -31,7 +31,7 @@ public class TicTacToe
     public  void newBoard()
     {
 
-        char CharPositionArray[] = {'0','1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        char[] CharPositionArray = {'0','1', '2', '3', '4', '5', '6', '7', '8', '9'};
         int i;
         counter = 0;
         player = 'X';
@@ -68,7 +68,7 @@ public class TicTacToe
                 Scanner in =new Scanner (System.in);
                 spot=in.nextInt();
                 posTaken = checkposition(spot);
-                if(posTaken==false)
+                if(!posTaken)
                     position[spot]=getPlayer();
             }
 
@@ -83,7 +83,7 @@ public class TicTacToe
 
     public  char checkWinner() throws IOException {
         File file = new File("src/main/resources/WinnerList.txt");
-        FileWriter fw = new FileWriter(file);
+        FileWriter fw = new FileWriter(file,true);
         char Winner = ' ';
 
         if (position[1] == 'X' && position[2] == 'X' && position[3] == 'X') Winner = 'X';
@@ -96,7 +96,7 @@ public class TicTacToe
         if (position[3] == 'X' && position[5] == 'X' && position[7] == 'X') Winner = 'X';
         if (Winner == 'X' )
         {System.out.println("PlayerX победил." );
-            fw.write("PlayerX победил.");
+            fw.write("\nPlayerX победил.");
             fw.flush();
             return Winner;
         }
@@ -112,7 +112,7 @@ public class TicTacToe
         if (Winner == 'O' )
         {
             System.out.println( "PlayerO победил." );
-            fw.write("PlayerO победил.");
+            fw.write("\nPlayerO победил.");
             fw.flush();
             return Winner; }
 
