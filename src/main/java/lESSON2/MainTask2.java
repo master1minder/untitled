@@ -2,36 +2,36 @@ package lESSON2;
 
 import java.util.Scanner;
 
-class Cat {
-    //4.1
-    private String name;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    //4.2
-    private static int catsCount = 0;
-
-    public static void addNewCat() {
-        catsCount += 1;
-    }
-
-    //4.3
-    public static void setCatsCount(int catsCount) {
-        Cat.catsCount = catsCount;
-    }
-
-    //4.4
-    private String fullName;
-
-    public void setName(String firstName, String lastName) {
-        String fullName = firstName + lastName;
-        this.fullName = fullName;
-    }
-
-
-}
+//class Cat {
+//    //4.1
+//    private String name;
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    //4.2
+//    private static int catsCount = 0;
+//
+//    public static void addNewCat() {
+//        catsCount += 1;
+//    }
+//
+//    //4.3
+//    public static void setCatsCount(int catsCount) {
+//        Cat.catsCount = catsCount;
+//    }
+//
+//    //4.4
+//    private String fullName;
+//
+//    public void setName(String firstName, String lastName) {
+//        String fullName = firstName + lastName;
+//        this.fullName = fullName;
+//    }
+//
+//
+//}
 
 public class MainTask2 {
     static Scanner scan = new Scanner(System.in);
