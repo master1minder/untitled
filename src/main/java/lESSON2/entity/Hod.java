@@ -12,6 +12,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class Hod {
     }
 
     // метод записи в XML файл с помощью JDOM
-    public static void write(List<Player> players, List<Hod> hods) throws IOException {
+    public static String write(List<Player> players, List<Hod> hods) throws IOException {
         Document doc = new Document();
         // создаем корневой элемент с пространством имен
         doc.setRootElement(new Element("Gameplay",
@@ -102,7 +103,25 @@ public class Hod {
         // Документ JDOM сформирован и готов к записи в файл
         XMLOutputter xmlWriter = new XMLOutputter(Format.getPrettyFormat());
         // сохнаряем в файл
-        xmlWriter.output(doc, new FileOutputStream("src/main/resources/List.xml"));
+        StringBuffer path = new StringBuffer("src/main/resources/List.xml");
+        File file = new File(String.valueOf(path));
+        int i=0;
+        boolean flag=true;
+        if (!file.exists()){
+            xmlWriter.output(doc, new FileOutputStream(String.valueOf(path)));
+        }
+        else {
+            while (flag) {
+                file = new File(String.valueOf(path));
+                if (file.exists()) {
+                    path.insert(path.length() - 4, String.valueOf(i));
+                    break;
+                }
+                i++;
+            }
+            xmlWriter.output(doc, new FileOutputStream(String.valueOf(path)));
+        }
+        return String.valueOf(path);
     }
 
 

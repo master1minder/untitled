@@ -14,10 +14,10 @@ public class TicTacToe<board> {
     private static String player;
     private static String name1;
     private static String name2;
+    private static String path;
     private static List<Player> players = new ArrayList<>();
     private static List<Hod> hodList = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
-    private Map<String, String> history;
 
 
     private String board[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
@@ -37,8 +37,8 @@ public class TicTacToe<board> {
             Toe.newBoard();
             Toe.play();
             System.out.println ("Хотите сыграть еще ? ");
-            Scanner in =new Scanner(System.in);
             System.out.println("Введите ответ:(yes)");
+            Scanner in =new Scanner(System.in);
             ch=in.nextLine();
             System.out.println("Хотите посмотреть запись?(YES)");
             ch=in.nextLine();
@@ -81,7 +81,7 @@ public class TicTacToe<board> {
         int spot = 0;
         int hod = 0;
         String blank = " ";
-        System.out.println("Игрок " + getPlayer() + " пойдет первым символом X");
+        System.out.println("Игрок " + name1 + " пойдет первым символом X");
 
         do {
             EnterBoard();
@@ -120,35 +120,35 @@ public class TicTacToe<board> {
         String Winner = " ";
 
         if (position[0] == "X" && position[1] == "X" && position[2] == "X") Winner = "X";//+
-        if (position[4] == "X" && position[5] == "X" && position[6] == "X") Winner = "X";
-        if (position[7] == "X" && position[8] == "X" && position[9] == "X") Winner = "X";
-        if (position[1] == "X" && position[4] == "X" && position[7] == "X") Winner = "X";
-        if (position[2] == "X" && position[5] == "X" && position[8] == "X") Winner = "X";
-        if (position[3] == "X" && position[6] == "X" && position[8] == "X") Winner = "X";
+        if (position[3] == "X" && position[4] == "X" && position[5] == "X") Winner = "X";//+
+        if (position[6] == "X" && position[7] == "X" && position[8] == "X") Winner = "X";//+
+        if (position[0] == "X" && position[3] == "X" && position[6] == "X") Winner = "X";//+
+        if (position[1] == "X" && position[4] == "X" && position[7] == "X") Winner = "X";//+
+        if (position[2] == "X" && position[5] == "X" && position[8] == "X") Winner = "X";//++
         if (position[0] == "X" && position[4] == "X" && position[8] == "X") Winner = "X";//+
-        if (position[3] == "X" && position[5] == "X" && position[7] == "X") Winner = "X";
+        if (position[2] == "X" && position[4] == "X" && position[6] == "X") Winner = "X";//+
         if (Winner == "X") {
 
             System.out.println(name1 + " победил.");
             players.add(2, new Player(1, name1, "X"));
-            Hod.write(players, hodList);
+            path = Hod.write(players, hodList);
 
             return Winner;
         }
 
         if (position[0] == "O" && position[1] == "O" && position[2] == "O") Winner = "O";
-        if (position[4] == "O" && position[5] == "O" && position[6] == "O") Winner = "O";
-        if (position[7] == "O" && position[8] == "O" && position[9] == "O") Winner = "O";
+        if (position[3] == "O" && position[4] == "O" && position[5] == "O") Winner = "O";
+        if (position[6] == "O" && position[7] == "O" && position[8] == "O") Winner = "O";
+        if (position[0] == "O" && position[3] == "O" && position[6] == "O") Winner = "O";
         if (position[1] == "O" && position[4] == "O" && position[7] == "O") Winner = "O";
         if (position[2] == "O" && position[5] == "O" && position[8] == "O") Winner = "O";
-        if (position[3] == "O" && position[6] == "O" && position[8] == "O") Winner = "O";
         if (position[0] == "O" && position[4] == "O" && position[8] == "O") Winner = "O";
-        if (position[3] == "O" && position[5] == "O" && position[7] == "O") Winner = "O";
+        if (position[2] == "O" && position[4] == "O" && position[6] == "O") Winner = "O";
         if (Winner == "O") {
 
             System.out.println(name2 + " победил.");
             players.add(2, new Player(2, name2, "O"));
-            Hod.write(players, hodList);
+            path = Hod.write(players, hodList);
             return Winner;
         }
 
@@ -158,7 +158,7 @@ public class TicTacToe<board> {
                     String Draw = "D";
                     System.out.println(" Ничья ");
                     players.add(2, new Player(0, "ДРУЖБА", "XO"));
-                    Hod.write(players, hodList);
+                    path = Hod.write(players, hodList);
                     return Draw;
                 }
                 continue;
@@ -192,7 +192,7 @@ public class TicTacToe<board> {
     }
 
     public static void ShowGame() throws IOException {
-        List<String> s = XMLL.reader();
+        List<String> s = XMLL.reader(path);
         String str = String.valueOf(s);
         int[] numbers = Arrays.stream(new String[]{str.replaceAll("[^0-9.]", "")})
                 .mapToInt(Integer::parseInt)

@@ -21,8 +21,7 @@ import org.xml.sax.SAXException;
 public class XMLL {
     static List<Player> players;
     static List<Hod> hodList;
-    public static List<String> reader() {
-        final String fileName = "src/main/resources/List.xml";
+    public static List<String> reader(String fileName) {
         org.jdom2.Document jdomDoc;
         List<String> emp = new ArrayList<>();
         int i=0;
