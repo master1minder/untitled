@@ -65,18 +65,21 @@ public class Hod {
     }
 
     // метод записи в XML файл с помощью JDOM
-    public static String write(List<Player> players, List<Hod> hods) throws IOException {
+    public static String write(List<Player> players, List<Hod> hods, boolean draw) throws IOException {
         Document doc = new Document();
         // создаем корневой элемент с пространством имен
         doc.setRootElement(new Element("Gameplay",
                 Namespace.getNamespace("")));
+        int i=0;
         for(Player player : players){
+            if (i==2) break;
             Element plElement = new Element("Player",
                     Namespace.getNamespace("")).
                     setAttribute("id", String.valueOf(player.getId())).
                     setAttribute("name", String.valueOf(player.getName())).
                     setAttribute("symbol", String.valueOf(player.getSymbol()));
             doc.getRootElement().addContent(plElement);
+            i++;
         }
 
         // формируем JDOM документ из объектов hod
@@ -94,18 +97,22 @@ public class Hod {
         Player winner = players.get(players.size()-1);
 
         Element gameResult = new Element("GameResult");
-        gameResult.addContent(new Element("Player")
-                .setAttribute("id",String.valueOf(winner.getId()))
-                .setAttribute("name", String.valueOf(winner.getName()))
-                .setAttribute("symbol", String.valueOf(winner.getSymbol())));
-
+        if (!draw) {
+            gameResult.addContent(new Element("Player")
+                    .setAttribute("id", String.valueOf(winner.getId()))
+                    .setAttribute("name", String.valueOf(winner.getName()))
+                    .setAttribute("symbol", String.valueOf(winner.getSymbol())));
+        }
+        else{
+            gameElement.addContent(new Element("Player").setText("Draw!"));
+        }
         doc.getRootElement().addContent(gameResult);
         // Документ JDOM сформирован и готов к записи в файл
         XMLOutputter xmlWriter = new XMLOutputter(Format.getPrettyFormat());
         // сохнаряем в файл
         StringBuffer path = new StringBuffer("src/main/resources/List.xml");
         File file = new File(String.valueOf(path));
-        int i=0;
+        i=0;
         boolean flag=true;
         if (!file.exists()){
             xmlWriter.output(doc, new FileOutputStream(String.valueOf(path)));
@@ -115,7 +122,7 @@ public class Hod {
                 file = new File(String.valueOf(path));
                 if (file.exists()) {
                     path.insert(path.length() - 4, String.valueOf(i));
-                    break;
+                    flag = false;
                 }
                 i++;
             }
@@ -123,6 +130,7 @@ public class Hod {
         }
         return String.valueOf(path);
     }
+
 
 
 }

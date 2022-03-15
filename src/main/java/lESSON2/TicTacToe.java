@@ -131,7 +131,7 @@ public class TicTacToe<board> {
 
             System.out.println(name1 + " победил.");
             players.add(2, new Player(1, name1, "X"));
-            path = Hod.write(players, hodList);
+            path = Hod.write(players, hodList,false);
 
             return Winner;
         }
@@ -148,7 +148,7 @@ public class TicTacToe<board> {
 
             System.out.println(name2 + " победил.");
             players.add(2, new Player(2, name2, "O"));
-            path = Hod.write(players, hodList);
+            path = Hod.write(players, hodList,false);
             return Winner;
         }
 
@@ -157,8 +157,8 @@ public class TicTacToe<board> {
                 if (i == 8) {
                     String Draw = "D";
                     System.out.println(" Ничья ");
-                    players.add(2, new Player(0, "ДРУЖБА", "XO"));
-                    path = Hod.write(players, hodList);
+                    players.add(2, new Player(0, "Draw!", ""));
+                    path = Hod.write(players, hodList,true);
                     return Draw;
                 }
                 continue;
