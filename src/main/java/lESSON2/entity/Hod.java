@@ -104,7 +104,7 @@ public class Hod {
                     .setAttribute("symbol", String.valueOf(winner.getSymbol())));
         }
         else{
-            gameElement.addContent(new Element("Player").setText("Draw!"));
+            gameResult.setText("Draw!");
         }
         doc.getRootElement().addContent(gameResult);
         // Документ JDOM сформирован и готов к записи в файл
@@ -127,6 +127,7 @@ public class Hod {
                 i++;
             }
             xmlWriter.output(doc, new FileOutputStream(String.valueOf(path)));
+//        }
         }
         return String.valueOf(path);
     }

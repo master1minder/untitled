@@ -115,8 +115,6 @@ public class TicTacToe<board> {
     }
 
     public String checkWinner() throws IOException {
-        File file = new File("src/main/resources/WinnerList.txt");
-        FileWriter fw = new FileWriter(file, true);
         String Winner = " ";
 
         if (position[0] == "X" && position[1] == "X" && position[2] == "X") Winner = "X";//+
